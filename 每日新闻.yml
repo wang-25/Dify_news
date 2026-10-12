@@ -1,0 +1,755 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 每日新闻
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.24@9e12eef09973667f0eaf4f082af883167e1de88740b22e71e71488d020c3778a
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: remywwo/rss-reader:0.0.1@5b41eff79c497d83840b6d8e0308ecf6743956490db1fab143b164dbf775d30f
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - description: ''
+    id: 1d838d16-b06b-4409-84f2-53a780c3d979
+    name: FEISHU_WEBHOOK
+    selector:
+    - env
+    - FEISHU_WEBHOOK
+    value: ''
+    value_type: secret
+  features:
+    file_upload: {}
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: start
+        targetType: code
+      id: 1791768694015-source-1791769743336-target
+      source: '1791768694015'
+      sourceHandle: source
+      target: '1791769743336'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: iteration
+        targetType: code
+      id: 1791768820870-source-1791769011547-target
+      selected: false
+      source: '1791768820870'
+      sourceHandle: source
+      target: '1791769011547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1791768820870'
+        loop_id: null
+        sourceType: iteration-start
+        targetType: tool
+      id: 1791768820870start-source-1791769114728-target
+      selected: false
+      source: 1791768820870start
+      sourceHandle: source
+      target: '1791769114728'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: code
+        targetType: llm
+      id: 1791769011547-source-1791769130709-target
+      selected: false
+      source: '1791769011547'
+      sourceHandle: source
+      target: '1791769130709'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: llm
+        targetType: code
+      id: 1791769130709-source-1791769163660-target
+      selected: false
+      source: '1791769130709'
+      sourceHandle: source
+      target: '1791769163660'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: code
+        targetType: llm
+      id: 1791769163660-source-1791769186800-target
+      selected: false
+      source: '1791769163660'
+      sourceHandle: source
+      target: '1791769186800'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: llm
+        targetType: code
+      id: 1791769186800-source-1791775798969-target
+      source: '1791769186800'
+      sourceHandle: source
+      target: '1791775798969'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: code
+        targetType: iteration
+      id: 1791769743336-source-1791768820870-target
+      selected: false
+      source: '1791769743336'
+      sourceHandle: source
+      target: '1791768820870'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        iteration_id: null
+        loop_id: null
+        sourceType: code
+        targetType: http-request
+      id: 1791775798969-source-1791769220052-target
+      source: '1791775798969'
+      sourceHandle: source
+      target: '1791769220052'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 72
+      id: '1791768694015'
+      position:
+        x: -157.26651479756663
+        y: 131.02064255564943
+      positionAbsolute:
+        x: -157.26651479756663
+        y: 131.02064255564943
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        error_handle_mode: continue-on-error
+        flatten_output: true
+        height: 227
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1791769743336'
+        - feeds
+        output_selector:
+        - '1791769114728'
+        - articles
+        output_type: array[object]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1791768820870start
+        title: 迭代
+        type: iteration
+        width: 386
+      height: 227
+      id: '1791768820870'
+      position:
+        x: 382.8040566274874
+        y: 48.28037994625373
+      positionAbsolute:
+        x: 382.8040566274874
+        y: 48.28037994625373
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 386
+      zIndex: 0
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1791768820870start
+      parentId: '1791768820870'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 406.8040566274874
+        y: 116.28037994625373
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1001
+    - data:
+        code: "import json, re, datetime\nfrom urllib.parse import urlparse\n\n# 源名映射：RSS\
+          \ Reader 返回的 author 是文章作者，不是媒体名，所以按域名反查\nDOMAIN_SRC = {\n    \"qbitai.com\"\
+          : \"量子位\",\n    \"openai.com\": \"OpenAI\",\n    \"leiphone.com\": \"雷锋网\"\
+          ,\n    \"infoq.cn\": \"InfoQ\",\n    \"ithome.com\": \"IT之家\",\n    \"github.com\"\
+          : \"GitHub\",          # 新增\n    \"arxiv.org\": \"arXiv\",            #\
+          \ 新增\n    \"rsshub.rssforever.com\": \"GitHubTrending\",   # 兜底，万一 RSSHub\
+          \ 没还原原始链接\n    \"techcrunch.com\": \"TechCrunch\",\n    \"theverge.com\"\
+          : \"The Verge\",\n}\n# 删掉 \"hn.algolia.com\" —— 那个源已经移除了\n\n\n\ndef guess_source(link:\
+          \ str) -> str:\n    host = urlparse(link).netloc.lower()\n    for key, name\
+          \ in DOMAIN_SRC.items():\n        if key in host:\n            return name\n\
+          \    return host\n\n\ndef _as_list(x):\n    \"\"\"把迭代输出的各种可能形态统一成 list[dict]：\n\
+          \    - JSON 字符串       → json.loads 后重试\n    - {\"articles\": []}  → 取出里面那个列表\n\
+          \    - 单个 dict         → 包成 [dict]\n    - 已经是 list       → 直接用\n    \"\"\
+          \"\n    if isinstance(x, str):\n        try:\n            x = json.loads(x)\n\
+          \        except Exception:\n            return []\n    if isinstance(x,\
+          \ dict):\n        for k in (\"articles\", \"result\", \"data\", \"items\"\
+          , \"list\"):\n            if isinstance(x.get(k), list):\n             \
+          \   return x[k]\n        return [x]\n    if isinstance(x, list):\n     \
+          \   return x\n    return []\n\n\ndef main(items: list) -> dict:\n    now\
+          \ = datetime.datetime.now(datetime.timezone.utc)\n    seen_links, seen_titles\
+          \ = set(), set()\n    out = []\n\n    for it in items:\n        # 迭代输出可能是一维（已扁平化）或二维（未扁平化），两种都吃\n\
+          \        for a in _as_list(it):\n            if not isinstance(a, dict):\n\
+          \                continue\n            link = (a.get(\"link\") or \"\").strip()\n\
+          \            title = (a.get(\"title\") or \"\").strip()\n            if\
+          \ not link or not title:\n                continue\n\n            # 1) 时间窗预筛：只留\
+          \ 48 小时内\n            pub = a.get(\"published\") or \"\"\n            try:\n\
+          \                t = datetime.datetime.fromisoformat(pub.replace(\"Z\",\
+          \ \"+00:00\"))\n                if (now - t).total_seconds() > 48 * 3600:\n\
+          \                    continue\n            except Exception:\n         \
+          \       pass  # 解析不了就放行，交给后面的模型判断\n\n            # 2) 去重：链接 + 标题双归一化\n \
+          \           key_link = re.sub(r\"[?#].*$\", \"\", link).rstrip(\"/\")\n\
+          \            key_title = re.sub(r\"\\W+\", \"\", title).lower()\n      \
+          \      if key_link in seen_links or key_title in seen_titles:\n        \
+          \        continue\n            seen_links.add(key_link)\n            seen_titles.add(key_title)\n\
+          \n            out.append({\n                \"id\": a.get(\"id\") or key_link,\n\
+          \                \"title\": title,\n                \"link\": link,\n  \
+          \              \"source\": guess_source(link),\n                \"published\"\
+          : pub,\n                \"snippet\": (a.get(\"summary\") or \"\")[:300],\n\
+          \            })\n\n    return {\"items\": json.dumps(out[:120], ensure_ascii=False),\
+          \ \"count\": len(out)}"
+        code_language: python3
+        outputs:
+          count:
+            children: null
+            type: number
+          items:
+            children: null
+            type: string
+        selected: false
+        title: 归一化去重
+        type: code
+        variables:
+        - value_selector:
+          - '1791768820870'
+          - output
+          value_type: array[object]
+          variable: items
+      height: 51
+      id: '1791769011547'
+      position:
+        x: 805.5805483996801
+        y: 137.70503283835194
+      positionAbsolute:
+        x: 805.5805483996801
+        y: 137.70503283835194
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1791768820870'
+        meta: null
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: The RSS or Atom feed URL to fetch.
+            ja_JP: The RSS or Atom feed URL to fetch.
+            pt_BR: The RSS or Atom feed URL to fetch.
+            zh_Hans: 要获取的 RSS 或 Atom 订阅链接。
+          input_schema: null
+          label:
+            en_US: RSS Feed URL
+            ja_JP: RSS Feed URL
+            pt_BR: RSS Feed URL
+            zh_Hans: RSS 订阅链接
+          llm_description: A public RSS or Atom feed URL. Only http and https URLs
+            are supported.
+          max: null
+          min: null
+          multiple: false
+          name: feed_url
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Maximum number of articles to return. Defaults to 30, max 50.
+            ja_JP: Maximum number of articles to return. Defaults to 30, max 50.
+            pt_BR: Maximum number of articles to return. Defaults to 30, max 50.
+            zh_Hans: 最多返回的文章数量。默认 30，最大 50。
+          input_schema: null
+          label:
+            en_US: Article Limit
+            ja_JP: Article Limit
+            pt_BR: Article Limit
+            zh_Hans: 文章数量
+          llm_description: Maximum number of articles to return. Defaults to 30 and
+            is capped at 50.
+          max: null
+          min: null
+          multiple: false
+          name: limit
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Whether to include article summaries or descriptions. Defaults
+              to true.
+            ja_JP: Whether to include article summaries or descriptions. Defaults
+              to true.
+            pt_BR: Whether to include article summaries or descriptions. Defaults
+              to true.
+            zh_Hans: 是否包含文章摘要或描述。默认包含。
+          input_schema: null
+          label:
+            en_US: Include Summary
+            ja_JP: Include Summary
+            pt_BR: Include Summary
+            zh_Hans: 包含摘要
+          llm_description: Whether to include article summaries. Defaults to true.
+            Set to false to omit summary text from articles.
+          max: null
+          min: null
+          multiple: false
+          name: include_summary
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: boolean
+        params:
+          feed_url: ''
+          include_summary: ''
+          limit: ''
+        plugin_id: remywwo/rss-reader
+        plugin_unique_identifier: remywwo/rss-reader:0.0.1@5b41eff79c497d83840b6d8e0308ecf6743956490db1fab143b164dbf775d30f
+        provider_icon: /console/api/workspaces/current/plugin/icon?tenant_id=1f4f9870-66db-42dc-92df-86d183cff577&filename=89e1f9a20cab545d3ab6b7588dd06ca203a87c85b9f8db0238bce8402813839b.svg
+        provider_icon_dark: null
+        provider_id: remywwo/rss-reader/rss-reader
+        provider_name: remywwo/rss-reader/rss-reader
+        provider_show_name: RSS 阅读器
+        provider_type: builtin
+        selected: false
+        title: 读取 RSS 订阅
+        tool_configurations: {}
+        tool_description: 通过 RSS 或 Atom 订阅链接获取新闻资讯文章列表。
+        tool_label: 读取 RSS 订阅
+        tool_name: rss-reader
+        tool_node_version: '2'
+        tool_parameters:
+          feed_url:
+            type: mixed
+            value: '{{#1791768820870.item#}}'
+          include_summary:
+            type: constant
+            value: true
+          limit:
+            type: constant
+            value: 20
+        type: tool
+      height: 51
+      id: '1791769114728'
+      parentId: '1791768820870'
+      position:
+        x: 126.48428343348957
+        y: 68
+      positionAbsolute:
+        x: 509.28834006097696
+        y: 116.28037994625373
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 1001
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-flash
+          provider: langgenius/deepseek/deepseek
+        model_selector: null
+        prompt_template:
+        - id: 15d0268f-25b6-4d4d-ab2f-670391d1a657
+          role: system
+          text: 你是 AI 领域新闻编辑，负责从当日候选新闻中筛选值得收录的条目。 你的判断标准只有三条：技术含量、行业影响力、时效性。 你不做任何创作，只做打分、分类和去重判断
+        - edition_type: basic
+          id: 61c0d987-3ee7-4d69-bbff-0922018d20c7
+          role: user
+          text: '下面是今日从多个信息源抓取的候选新闻，JSON 数组格式：{{#1791769011547.items#}}   请为每一条打分。  【评分维度】总分
+            10 分 - 技术含量（0-4）：涉及新模型 / 新方法 / 新架构 / 有可验证结果则高分；纯营销稿、PR 稿低分 - 行业影响（0-3）：头部机构发布、影响行业格局、被多方讨论则高分
+            - 时效性（0-3）：24 小时内 3 分，48 小时内 2 分，更早 1 分  【分类】只能从以下六个里选一个： 模型发布 / 产品功能
+            / 研究论文 / 开源项目 / 融资并购 / 行业观点  【同步处理】 1. 内容重复的条目：只保留 score 最高的一条，把被合并的 id
+            写进它的 dup_ids 数组 2. 与 AI 领域无关的条目：score 直接给 0 3. 明显是软文、招聘、课程推广的：score 给
+            0  【配额】最终保留的 20 条里，同一 category 最多 6 条。
+
+            超出时只保留该分类中 score 最高的 6 条。【输出格式】严格输出 JSON 数组，不要任何解释文字、不要 markdown 代码块标记：
+            [   {"id": "原条目id", "score": 8.5, "category": "模型发布", "reason": "不超过20字的理由",
+            "dup_ids": []} ]'
+        selected: false
+        structured_output_enabled: false
+        title: 打分
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791769130709'
+      position:
+        x: 1087.8849894542084
+        y: 130.6991767725471
+      positionAbsolute:
+        x: 1087.8849894542084
+        y: 130.6991767725471
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import datetime\nimport json\nimport re\n\nWEEK = [\"周一\", \"周二\",\
+          \ \"周三\", \"周四\", \"周五\", \"周六\", \"周日\"]\n\n\ndef _today() -> str:\n  \
+          \  \"\"\"今天是几号。显式用 UTC+8 —— 容器默认多半是 UTC，不指定会差一天。\"\"\"\n    tz = datetime.timezone(datetime.timedelta(hours=8))\n\
+          \    now = datetime.datetime.now(tz)\n    return now.strftime(\"%Y-%m-%d\"\
+          ) + \" \" + WEEK[now.weekday()]\n\n\ndef _score(item: dict) -> float:\n\
+          \    try:\n        return float(item.get(\"score\", 0))\n    except Exception:\n\
+          \        return 0.0\n\n\ndef _as_list(x):\n    if isinstance(x, str):\n\
+          \        try:\n            x = json.loads(x)\n        except Exception:\n\
+          \            return []\n    if isinstance(x, dict):\n        for k in (\"\
+          articles\", \"result\", \"data\", \"items\", \"list\"):\n            if\
+          \ isinstance(x.get(k), list):\n                return x[k]\n        return\
+          \ [x]\n    return x if isinstance(x, list) else []\n\n\ndef _extract_json(text:\
+          \ str):\n    if not text:\n        return None\n    text = re.sub(r\"<think>.*?</think>\"\
+          , \"\", text, flags=re.S)\n    text = text.replace(\"<think>\", \"\").replace(\"\
+          </think>\", \"\")\n    text = re.sub(r\"```(?:json)?\", \"\", text)\n  \
+          \  start, end = text.find(\"[\"), text.rfind(\"]\")\n    if start == -1\
+          \ or end <= start:\n        return None\n    try:\n        return json.loads(text[start:end\
+          \ + 1])\n    except Exception:\n        return None\n\n\ndef main(raw: str,\
+          \ items: str) -> dict:\n    \"\"\"把「模型打分」和「节点 3 的原文」按 id 合并，再排序取前 20。\"\"\
+          \"\n    today = _today()\n\n    scored = _extract_json(raw or \"\")\n  \
+          \  if not isinstance(scored, list):\n        return {\"ok\": False, \"error\"\
+          : \"解析失败：\" + (raw or \"\")[:200],\n                \"items\": \"[]\", \"\
+          count\": 0, \"today\": today}\n\n    origin = {}\n    for a in _as_list(items):\n\
+          \        if isinstance(a, dict) and a.get(\"id\"):\n            origin[a[\"\
+          id\"]] = a\n\n    merged = []\n    for s in scored:\n        if not isinstance(s,\
+          \ dict) or _score(s) < 6:\n            continue\n        o = origin.get(s.get(\"\
+          id\"), {})\n        merged.append({\n            \"title\": o.get(\"title\"\
+          , \"\"),\n            \"link\": o.get(\"link\", \"\"),\n            \"source\"\
+          : o.get(\"source\", \"\"),\n            \"published\": o.get(\"published\"\
+          , \"\"),\n            \"snippet\": o.get(\"snippet\", \"\"),\n         \
+          \   \"score\": _score(s),\n            \"category\": s.get(\"category\"\
+          , \"\"),\n            \"reason\": s.get(\"reason\", \"\"),\n        })\n\
+          \n    merged.sort(key=lambda x: x[\"score\"], reverse=True)\n    top = merged[:20]\n\
+          \    return {\"ok\": True, \"error\": \"\",\n            \"items\": json.dumps(top,\
+          \ ensure_ascii=False),\n            \"count\": len(top), \"today\": today}\n"
+        code_language: python3
+        outputs:
+          count:
+            children: null
+            type: number
+          error:
+            children: null
+            type: string
+          items:
+            children: null
+            type: string
+          ok:
+            children: null
+            type: boolean
+          today:
+            children: null
+            type: string
+        selected: false
+        title: ' 解析 + 排序 + 取 Top 10'
+        type: code
+        variables:
+        - value_selector:
+          - '1791769130709'
+          - text
+          value_type: string
+          variable: raw
+        - value_selector:
+          - '1791769011547'
+          - items
+          value_type: string
+          variable: items
+      height: 51
+      id: '1791769163660'
+      position:
+        x: 1369.7150373509269
+        y: 146.41053847131317
+      positionAbsolute:
+        x: 1369.7150373509269
+        y: 146.41053847131317
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-flash
+          provider: langgenius/deepseek/deepseek
+        model_selector: null
+        prompt_template:
+        - id: 41e10e3c-60cd-4c8a-b115-85aa24dfb479
+          role: system
+          text: '你是 AI 领域情报官，服务对象是需要用 3 分钟掌握当天 AI 动态的从业者。 你只写事实，不写感想。你宁可少写一条，也绝不编造任何信息。
+
+
+            '
+        - id: 90f71d31-b0e1-436e-8ae8-4378d12b63b1
+          role: user
+          text: "根据下面筛选出的新闻，写一份中文每日简报。  【硬性规则】 1. 每条 4-5 句，按这个顺序写，不要跳步：\n   ① 发生了什么（事实本身）\n\
+            \   ② 关键细节（数据、机构、方法、版本号——只能用输入里有的，没有就跳过这一步）\n   ③ 为什么重要（对行业、技术路线或从业者的影响）\n\
+            \   ④ 局限、风险或还没解决的问题（输入里提到才写）\n   素材不够 4 句就写 3 句，不要靠重复语句或空话凑满。\n   不写任何铺垫和过渡。\
+            \ 2. 每条末尾必须附原始链接，格式：\U0001F517 [来源名](链接) 3. 链接只能从输入数据里原样复制，绝对不允许自己构造、补全或改写\
+            \ URL 4. 不许编造数字、人名、机构名、日期。输入里没有的信息，一个字都不加 5. 禁止出现\"本文将\"\"总而言之\"\"值得关注\"\
+            \"让我们\"\"随着……的发展\"这类空话 6. 只输出 Markdown 正文，不要用代码块包裹  【输出格式】  # AI 日报 ·\
+            \ {{#1791769163660.today#}}  > 收录 {{#1791769163660.count#}} 条  ## 1. 标题\
+            \  正文 4-5 句。  \U0001F517 [来源名](链接)  ## 2. 标题  ……  ---  **今日最该关注**：一句话点出今天最重要的那件事，并说明理由。\
+            \  【筛选后的新闻】每条含 title / link / source / published / snippet / category\
+            \ / score 字段。\n你要用的原始素材在 snippet 和 title 里，不要只靠 reason（那只有 20 字，不够写 4-5\
+            \ 句）。  {{#1791769163660.items#}}"
+        selected: false
+        title: 生成简报
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791769186800'
+      position:
+        x: 1655.4810558572135
+        y: 137.70503283835194
+      positionAbsolute:
+        x: 1655.4810558572135
+        y: 137.70503283835194
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-312
+            key: ''
+            type: text
+            value: '{"msg_type":"text","content":{"text":"{{#1791775798969.text#}}"}}'
+          type: json
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: '{{#env.FEISHU_WEBHOOK#}}'
+        variables: []
+      height: 124
+      id: '1791769220052'
+      position:
+        x: 2251.0314320104203
+        y: 130.6991767725471
+      positionAbsolute:
+        x: 2251.0314320104203
+        y: 130.6991767725471
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "def main() -> dict:\n    feeds = [\n    # ── AI 媒体 ──\n    \"https://www.qbitai.com/feed\"\
+          ,\n    \"https://openai.com/news/rss.xml\",\n    \"https://www.leiphone.com/feed\"\
+          ,\n    \"https://www.infoq.cn/feed\",\n    \"https://www.ithome.com/rss/\"\
+          ,\n    # ── GitHub 热榜 ──\n    \"https://rsshub.rssforever.com/github/trending/daily/any\"\
+          ,\n    # ── arXiv 论文（用 API，不是 RSS）──\n    \"https://export.arxiv.org/api/query\"\
+          \n    \"?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=30\"\
+          ,\n    ]\n\n    return {\"feeds\": feeds, \"count\": len(feeds)}\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          count:
+            children: null
+            type: number
+          feeds:
+            children: null
+            type: array[string]
+        selected: false
+        title: 源列表
+        type: code
+        variables: []
+      height: 51
+      id: '1791769743336'
+      position:
+        x: 109.77212304867385
+        y: 152.02064255564943
+      positionAbsolute:
+        x: 109.77212304867385
+        y: 152.02064255564943
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "import re\n\n\ndef main(text: str) -> dict:\n    \"\"\"剥掉推理模型的思维链，只留下给用户看的正文。\"\
+          \"\"\n    clean = text or \"\"\n    clean = re.sub(r\"<think>.*?</think>\"\
+          , \"\", clean, flags=re.S)\n    clean = re.sub(r\"</?think>\", \"\", clean)\n\
+          \    clean = re.sub(r\"<!--dify-deepseek-reasoning-->\", \"\", clean)\n\
+          \    return {\"text\": clean.strip()}\n"
+        code_language: python3
+        outputs:
+          text:
+            children: null
+            type: string
+        selected: false
+        title: 清洗
+        type: code
+        variables:
+        - value_selector:
+          - '1791769186800'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '1791775798969'
+      position:
+        x: 1948.262805750027
+        y: 137.70503283835194
+      positionAbsolute:
+        x: 1948.262805750027
+        y: 137.70503283835194
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: 276.0367073446649
+      y: 366.2270951778537
+      zoom: 0.3789291416276001
+  rag_pipeline_variables: []
